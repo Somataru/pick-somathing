@@ -11,7 +11,7 @@
 	"variable_placeholder_buttons": [],
 	"timeline_setups": [],
 	"unhandled_root_fields": {},
-	"activity_tracker": 16,
+	"activity_tracker": 21,
 	"resolution": {
 		"width": 64,
 		"height": 64
@@ -657,6 +657,34 @@
 			"saved": true,
 			"uuid": "d1f90af4-8cc5-2483-794c-1c1e8952bdf4",
 			"relative_path": "textures/skins/default.png"
+		},
+		{
+			"path": "E:\\Random Bullshit Go\\minecraft_figura\\figura\\avatars\\Homemade\\[libs]\\pick-somathing\\textures\\skins\\terrible_dev.png",
+			"name": "terrible_dev.png",
+			"folder": "",
+			"namespace": "",
+			"id": "1",
+			"group": "",
+			"width": 64,
+			"height": 64,
+			"uv_width": 64,
+			"uv_height": 64,
+			"particle": false,
+			"use_as_default": false,
+			"layers_enabled": false,
+			"sync_to_project": "",
+			"render_mode": "default",
+			"render_sides": "auto",
+			"pbr_channel": "color",
+			"frame_time": 1,
+			"frame_order_type": "loop",
+			"frame_order": "",
+			"frame_interpolate": false,
+			"visible": true,
+			"internal": false,
+			"saved": true,
+			"uuid": "4b891200-957f-e998-18ff-ce9363bfaa88",
+			"relative_path": "textures/skins/terrible_dev.png"
 		}
 	]
 }
