@@ -19,4 +19,34 @@ actionSkin = mainPage:newAction()
 -- Letting our selector complete the action
 skinSelector:completeAction(actionSkin)
 
+
+-- Skin restriction
+actionRestrictedSlon = mainPage:newAction()
+    :color(mainColor):hoverColor(mainHover):toggleColor(mainOn)
+    :title("§c§lAllow Restricted Skins§7")
+    :item("minecraft:barrier")
+    :toggleItem("minecraft:structure_void")
+    :setOnToggle(
+        function (state)
+            skinSelector.allowRestricted = state
+            skinSelector:updateTitle()
+        end
+    )
+    :toggled(allowRestricted)
+
+-- Global allow restricted
+actionRestricted = mainPage:newAction()
+    :color(mainColor):hoverColor(mainHover):toggleColor(mainOn)
+    :title("§c§lAllow Restricted All§7")
+    :item("minecraft:barrier")
+    :toggleItem("minecraft:structure_void")
+    :setOnToggle(
+        function (state)
+            allowRestricted = state
+            skinSelector:updateTitle()
+        end
+    )
+    :toggled(allowRestricted)
+
+
 return actionWheelScript
