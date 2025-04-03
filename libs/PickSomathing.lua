@@ -20,7 +20,7 @@ function Selector.new(title, items, onConfirm, displayFunction, currentItem, sel
         if isCurrent then prefix = item.prefix or "§a" end
         if isSelected then prefix = item.selectedPrefix or "§f" end
         -- ... But not override it with a strikethrough
-        if item.restricted and not allowRestricted then prefix = prefix.."§m§k" end
+        if item.restricted and not (allowRestricted or self.allowRestricted) then prefix = prefix.."§m§k" end
 
         local name = item.name
         if isCurrent then name = "§l[" .. name .. "]" end
