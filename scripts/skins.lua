@@ -5,17 +5,24 @@ skins = {
     -- Full example of a skin
     {
         -- Default properties
-        selectable = true,
-        restricted = false,
-        prefix = "§4",
-        selectedPrefix = "§c",
-        applyFunction = function () host:setActionbar("DEFAULT SKIN") end,
-        removeFunction = function () host:setActionbar("DEFAULT SKIN REMOVED") end,
+        selectable = true,      -- Does this item show up in the selector?
+        restricted = false,     -- Can you use this item?
+                                -- (if true, allowRestricted needs to be true globally or for this selector)
+        prefix = "§4",          -- Prefix to use when this item is active
+        selectedPrefix = "§c",  -- Prefix to use when this item is selected
+        applyFunction =         -- Function that runs when this outfit specifically is applied
+            function ()
+                host:setActionbar("DEFAULT SKIN")
+            end,
+        removeFunction =        -- Function that runs when this outfit specifically is removed
+            function ()
+                host:setActionbar("DEFAULT SKIN REMOVED")
+            end,
 
-        name = "Default", -- Only a default property with default display function
-        
+        name = "Default",       -- Only a default property with default display function
+
         -- Custom properties
-        texture = "textures.skins.default" 
+        texture = "textures.skins.default" -- Only used by our own changeSkin function
     },
     
     -- Shorter version that you'd use 95% of the time
