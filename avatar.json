@@ -4,5 +4,6 @@
   "authors": [
     "Somataru (JANICHRIS5963)"
   ],
+  "autoScripts": ["script"],
   "color": "#534f4d"
 }
