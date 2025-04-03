@@ -11,7 +11,7 @@
 	"variable_placeholder_buttons": [],
 	"timeline_setups": [],
 	"unhandled_root_fields": {},
-	"activity_tracker": 21,
+	"activity_tracker": 25,
 	"resolution": {
 		"width": 64,
 		"height": 64
@@ -685,6 +685,34 @@
 			"saved": true,
 			"uuid": "4b891200-957f-e998-18ff-ce9363bfaa88",
 			"relative_path": "textures/skins/terrible_dev.png"
+		},
+		{
+			"path": "E:\\Random Bullshit Go\\minecraft_figura\\figura\\avatars\\Homemade\\[libs]\\pick-somathing\\textures\\missing.png",
+			"name": "missing.png",
+			"folder": "",
+			"namespace": "",
+			"id": "2",
+			"group": "",
+			"width": 2,
+			"height": 2,
+			"uv_width": 2,
+			"uv_height": 2,
+			"particle": false,
+			"use_as_default": false,
+			"layers_enabled": false,
+			"sync_to_project": "",
+			"render_mode": "default",
+			"render_sides": "auto",
+			"pbr_channel": "color",
+			"frame_time": 1,
+			"frame_order_type": "loop",
+			"frame_order": "",
+			"frame_interpolate": false,
+			"visible": true,
+			"internal": false,
+			"saved": true,
+			"uuid": "9269c817-2140-1287-917d-1bddca8851cd",
+			"relative_path": "textures/missing.png"
 		}
 	]
 }
