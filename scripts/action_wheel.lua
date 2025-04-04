@@ -12,12 +12,9 @@ local mainOn =  vec(0.4, 0.8, 0.9)
 
 
 -- Preparing the action for the selector
-actionSkin = mainPage:newAction()
+actionSkin = skinSelector:newAction(mainPage)
     :color(mainColor):hoverColor(mainHover)
     :item("minecraft:player_head")
-
--- Letting our selector complete the action
-skinSelector:completeAction(actionSkin)
 
 
 -- Skin restriction
