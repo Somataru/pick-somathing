@@ -61,15 +61,30 @@ function Selector:scroll(dir)
     end
 end
 
-function Selector:confirm()
+
+-- Item Selection --
+
+function Selector:setItem(index, doForce, makeSelected, doConfirm, doApply)
+    self.currentItem = index
+
+    if makeSelected or makeSelected == nil then
+        self.selectedItem = index
+    end
+
+    if doConfirm or doConfirm == nil then
+        self:confirm(doForce, doApply or doApply == nil)
+    end
+end
+
+function Selector:confirm(doForce, doApply)
     local item = self.items[self.selectedItem]
     local currentItem = self.items[self.currentItem]
 
-    if item.selectable and (not item.restricted or allowRestricted or self.allowRestricted) then
+    if doForce or item.selectable and (not item.restricted or allowRestricted or self.allowRestricted) then
         if currentItem.removeFunction then currentItem.removeFunction() end
 
         self.currentItem = self.selectedItem
-        if item.applyFunction then item.applyFunction() end
+        if item.applyFunction and (doApply or doApply == nil) then item.applyFunction() end
         self.onConfirm(self.selectedItem)
 
         if host:isHost() and player:isLoaded() then
