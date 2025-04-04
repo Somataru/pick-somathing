@@ -21,7 +21,7 @@ skinSelector:completeAction(actionSkin)
 
 
 -- Skin restriction
-actionRestrictedSlon = mainPage:newAction()
+actionRestrictedSkin = mainPage:newAction()
     :color(mainColor):hoverColor(mainHover):toggleColor(mainOn)
     :title("§c§lAllow Restricted Skins§7")
     :item("minecraft:barrier")
