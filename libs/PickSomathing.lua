@@ -104,6 +104,11 @@ function Selector:updateTitle()
     end
 end
 
+-- Action stuff --
+function Selector:newAction(page)
+    return self:completeAction(page:newAction())
+end
+
 function Selector:completeAction(action)
     if action then self.action = action end
 
