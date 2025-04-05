@@ -48,7 +48,7 @@ end
 skinSelector = selector.new(
     "§bChange Skin",    -- Title of the selector
     skins,              -- The items we defined above
-    pings.changeSkin,   -- Function that will be used whenever an item is confirmed
+    changeSkin,   -- Function that will be used whenever an item is confirmed
     nil,                -- Function that will be run whenever an item is removed
     nil,                -- Function that will define the displaying of the list
     nil,                -- What item to start with
