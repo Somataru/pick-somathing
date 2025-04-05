@@ -65,14 +65,14 @@ end
 -- Item Selection --
 
 function Selector:setItem(index, doForce, makeSelected, doConfirm, doApply)
-    self.currentItem = index
-
     if makeSelected or makeSelected == nil then
         self.selectedItem = index
     end
 
     if doConfirm or doConfirm == nil then
         self:confirm(doForce, doApply or doApply == nil)
+    else
+        self.currentItem = index
     end
 end
 
