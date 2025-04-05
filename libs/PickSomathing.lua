@@ -64,24 +64,24 @@ end
 
 -- Item Selection --
 
-function Selector:setItem(index, doForce, makeSelected, doConfirm, doApply)
-    self.currentItem = index
-
+function Selector:setItem(index, doForce, makeSelected, doConfirm, doApply, doRemove)
     if makeSelected or makeSelected == nil then
         self.selectedItem = index
     end
 
     if doConfirm or doConfirm == nil then
-        self:confirm(doForce, doApply or doApply == nil)
+        self:confirm(doForce, doApply or doApply == nil, doRemove or doRemove == nil)
+    else
+        self.currentItem = index
     end
 end
 
-function Selector:confirm(doForce, doApply)
+function Selector:confirm(doForce, doApply, doRemove)
     local item = self.items[self.selectedItem]
     local currentItem = self.items[self.currentItem]
 
     if doForce or item.selectable and (not item.restricted or allowRestricted or self.allowRestricted) then
-        if currentItem.removeFunction then currentItem.removeFunction() end
+        if currentItem.removeFunction and (doRemove or doRemove == nil) then currentItem.removeFunction() end
 
         self.currentItem = self.selectedItem
         if item.applyFunction and (doApply or doApply == nil) then item.applyFunction() end
