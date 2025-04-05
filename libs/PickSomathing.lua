@@ -93,7 +93,7 @@ function Selector:confirm(doForce, doApply, doRemove)
     local currentItem = self.items[self.currentItem]
     doRemove = doRemove or doRemove == nil
 
-    if doForce or item.selectable and (not item.restricted or allowRestricted or self.allowRestricted) then
+    if item and (doForce or item.selectable and (not item.restricted or allowRestricted or self.allowRestricted)) then
         if currentItem.removeFunction and doRemove then currentItem.removeFunction() end
         if self.onRemove and doRemove then self.onRemove() end
 
