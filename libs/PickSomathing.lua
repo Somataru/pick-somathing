@@ -2,10 +2,14 @@
 local Selector = {}
 Selector.__index = Selector
 
+Selector.selectors = {}
+
 function Selector.new(title, items, onConfirm, onRemove, displayFunction, currentItem, selectedItem, configName, action)
     local self = {}  -- Create a new table
     setmetatable(self, Selector)  -- Set the metatable explicitly
-    
+    table.insert(Selector.selectors, self)
+    self.id = #Selector.selectors
+
     self.title = title
     self.items = items or { }
     self.currentItem = currentItem or 1
@@ -77,6 +81,13 @@ function Selector:setItem(index, doForce, makeSelected, doConfirm, doApply, doRe
     end
 end
 
+function pings.pickSomathingConfirm(selectorIndex, selectedItem, currentItem, doForce, doApply, doRemove)
+    local thingSelector = Selector.selectors[selectorIndex]
+    thingSelector.selectedItem = selectedItem
+    thingSelector.currentItem = currentItem
+    thingSelector:confirm(doForce, doApply, doRemove)
+end
+
 function Selector:confirm(doForce, doApply, doRemove)
     local item = self.items[self.selectedItem]
     local currentItem = self.items[self.currentItem]
@@ -86,9 +97,9 @@ function Selector:confirm(doForce, doApply, doRemove)
         if currentItem.removeFunction and doRemove then currentItem.removeFunction() end
         if self.onRemove and doRemove then self.onRemove() end
 
+        self.onConfirm(self.selectedItem)
         self.currentItem = self.selectedItem
         if item.applyFunction and (doApply or doApply == nil) then item.applyFunction() end
-        self.onConfirm(self.selectedItem)
 
         if host:isHost() and player:isLoaded() then
             sounds:playSound("minecraft:item.armor.equip_leather", player:getPos(), 1.0, 1.0, false)
@@ -133,7 +144,7 @@ function Selector:completeAction(action)
     self.action
         :title(self:getDisplay())
         :onScroll(function (dir) self:scroll(dir) end)
-        :onLeftClick(function () self:confirm() end)
+        :onLeftClick(function () pings.pickSomathingConfirm(self.id, self.selectedItem, self.currentItem) end)
         :onRightClick(function () self:scroll(-1) end)
 
     return self.action
