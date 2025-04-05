@@ -2,7 +2,7 @@
 local Selector = {}
 Selector.__index = Selector
 
-function Selector.new(title, items, onConfirm, displayFunction, currentItem, selectedItem, configName, action)
+function Selector.new(title, items, onConfirm, onRemove, displayFunction, currentItem, selectedItem, configName, action)
     local self = {}  -- Create a new table
     setmetatable(self, Selector)  -- Set the metatable explicitly
     
@@ -11,6 +11,7 @@ function Selector.new(title, items, onConfirm, displayFunction, currentItem, sel
     self.currentItem = currentItem or 1
     self.selectedItem = self.currentItem
     self.onConfirm = onConfirm
+    self.onRemove = onRemove
     self.configName = configName
     self.action = action
     self.displayFunction = displayFunction or function(item, isCurrent, isSelected)
@@ -79,9 +80,11 @@ end
 function Selector:confirm(doForce, doApply, doRemove)
     local item = self.items[self.selectedItem]
     local currentItem = self.items[self.currentItem]
+    doRemove = doRemove or doRemove == nil
 
     if doForce or item.selectable and (not item.restricted or allowRestricted or self.allowRestricted) then
-        if currentItem.removeFunction and (doRemove or doRemove == nil) then currentItem.removeFunction() end
+        if currentItem.removeFunction and doRemove then currentItem.removeFunction() end
+        if self.onRemove and doRemove then self.onRemove() end
 
         self.currentItem = self.selectedItem
         if item.applyFunction and (doApply or doApply == nil) then item.applyFunction() end
