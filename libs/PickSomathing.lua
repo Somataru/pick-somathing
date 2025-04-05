@@ -94,12 +94,12 @@ function Selector:confirm(doForce, doApply, doRemove)
     doRemove = doRemove or doRemove == nil
 
     if item and (doForce or item.selectable and (not item.restricted or allowRestricted or self.allowRestricted)) then
-        if currentItem.removeFunction and doRemove then currentItem.removeFunction() end
+        if currentItem and currentItem.removeFunction and doRemove then currentItem.removeFunction() end
         if self.onRemove and doRemove then self.onRemove() end
 
         self.onConfirm(self.selectedItem)
         self.currentItem = self.selectedItem
-        if item.applyFunction and (doApply or doApply == nil) then item.applyFunction() end
+        if item and item.applyFunction and (doApply or doApply == nil) then item.applyFunction() end
 
         if host:isHost() and player:isLoaded() then
             sounds:playSound("minecraft:item.armor.equip_leather", player:getPos(), 1.0, 1.0, false)
