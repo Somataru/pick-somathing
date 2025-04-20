@@ -1,5 +1,6 @@
 local skinScript = {}
 
+local skinPrefix = "textures.skins."
 -- First, we define the different skins we want to use
 skins = {
     -- Full example of a skin
@@ -22,26 +23,23 @@ skins = {
         name = "Default",       -- Only a default property with default display function
 
         -- Custom properties
-        texture = "textures.skins.default" -- Only used by our own changeSkin function
+        texture = textures[skinPrefix.."default"] -- Only used by our own changeSkin function
     },
     
     -- Shorter version that you'd use 95% of the time
-    { selectable = true, name = "Terrible Dev", texture = "textures.skins.terrible_dev" },
+    { selectable = true, name = "Terrible Dev", texture = textures[skinPrefix.."terrible_dev"] },
 
     -- Use case: This is a texture you don't want to apply by accident, but need to know it's here. Like, testing a new one !
-    { selectable = true, restricted = true, name = "Testing Texture", texture = "textures.skins.testing_texture" },
+    { selectable = true, restricted = true, name = "Testing Texture", texture = textures[skinPrefix.."testing_texture"] },
     
     -- Use case: If something goes catastrophically wrong, you can always fall back to this one to be warned something happened
-    { selectable = false, restricted = true, name = "MISSING TEXTURE", texture = "textures.missing" }
+    { selectable = false, restricted = true, name = "MISSING TEXTURE", texture = textures["textures.missing"] }
 }
 
 -- The function that will visually swap the skin around
 function pings.changeSkin(skin) changeSkin(skin) end
 function changeSkin(skin)
-    models.model.root:setPrimaryTexture(
-        "Custom",
-        textures[ skinSelector.items[skin].texture ] -- Selector.items[index].property
-    )
+    models.model.root:setPrimaryTexture("Custom", skinSelector.items[skin].texture ) -- Selector.items[index].property
 end
 
 -- Finally, we have what's needed to create the selector
